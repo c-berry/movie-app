@@ -2,11 +2,6 @@
 
 fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => console.log(data));
 
-// function getMovies(){
-//     fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => {
-//             return console.log(data);
-//         }
-//     )}
 
 function getMovies(){
     fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => {
@@ -17,8 +12,12 @@ function getMovies(){
 function outputMovies(data) {
     html = "";
     for (var i = 0; i < data.length; i++) {
-        var title = data[i].title
-        html += "<div id='container'>" + title + "</div>"
+        var title = data[i].title;
+        var rating = data[i].rating;
+        html += "<div id='container' class='card-body'>"
+            + "<div>Title: " + title + "</div>"
+            + "<div>Rating: " + rating + "</div>"
+            + "</div>"
     }
     return html;
 }
