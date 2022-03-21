@@ -3,14 +3,14 @@
 //LOGS JSON DATA FOR REFERENCE:
 // fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => console.log(data));
 
-//RETRIEVES DATA AND CALLS FUNCTION TO OUTPUT ONTO PAGE:
-function getMovies(){
-    fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => {
-        $("#output").html(outputMovies(data));
-        }
-    )}
+//HOLDS URL FOR FETCH PURPOSES:
+const movieURL = "https://scientific-thoughtful-asparagus.glitch.me/movies";
 
 //DISPLAYS TITLES AND RATINGS IN HTML FORMAT:
+$(document).ready(function (){
+    getMovie();
+});
+
 function outputMovies(data) {
     html = "";
     for (var i = 0; i < data.length; i++) {
@@ -24,20 +24,15 @@ function outputMovies(data) {
     return html;
 }
 
-//FUNCTION CALLS:
-// outputMovies();
-// getMovies();
-
 // The C in CRUD: Create with a POST request
 
-//THIS WILL CREATE NEW MOVIE THAT WILL BE ADDED TO JSON DATA:
-const movieURL = "https://scientific-thoughtful-asparagus.glitch.me/movies";
-
+//NEW MOVIE THAT WILL BE ADDED TO JSON DATA:
 const movieToPost = {
     title: "Pulp Fiction",
-    rating: 9
+    rating: 5
 }
 
+//FORMAT FOR ADDING OBJECT TO JSON:
 const postOptions = {
     method: 'POST',
     headers: {
@@ -46,11 +41,17 @@ const postOptions = {
     body: JSON.stringify(movieToPost)
 };
 
+//RETRIEVES DATA AND CALLS FUNCTION TO OUTPUT ONTO PAGE:
 function getMovie(){
-    fetch(movieURL).then(resp => resp.json()).then(data => console.log(data));
+    fetch(movieURL).then(resp => resp.json()).then(data => {
+        console.log(data);
+        $("#output").html(outputMovies(data));
+        console.log(data);
+    });
 }
-getMovie();
+// getMovie();
 
+//THIS ADDS THE NEW MOVIE TO THE JSON:
 // fetch(movieURL, postOptions).then(getMovie);
 
 // The U in CRUD -- PUT and PATCH
@@ -67,7 +68,7 @@ getMovie();
 //     body: JSON.stringify(modification)
 // }
 //
-// fetch(booksURL + '/1', patchOptions).then(getBooks);
+// fetch(movieURL + '/1', patchOptions).then(getMovies);
 
 // Change the whole thing with PUT
 // modification = {
@@ -86,7 +87,7 @@ getMovie();
 //     body: JSON.stringify(modification)
 // }
 //
-// fetch(booksURL + '/2', putOptions).then(getBooks);
+// fetch(movieURL + '/2', putOptions).then(getMovies);
 
 // The D in CRUD : Deleting records with DELETE
 
@@ -96,5 +97,5 @@ getMovie();
 //         'Content-Type': 'application/json'
 //     }
 // }
-//
-// fetch(booksURL + "/3", deleteOptions).then(getBooks);
+// //
+// fetch(movieURL + "/5", deleteOptions).then(getMovie);
