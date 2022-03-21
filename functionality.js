@@ -1,14 +1,16 @@
 // The R in CRUD: Read with a GET request
 
-fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => console.log(data));
+//LOGS JSON DATA FOR REFERENCE:
+// fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => console.log(data));
 
-
+//RETRIEVES DATA AND CALLS FUNCTION TO OUTPUT ONTO PAGE:
 function getMovies(){
     fetch("https://scientific-thoughtful-asparagus.glitch.me/movies").then(resp => resp.json()).then(data => {
         $("#output").html(outputMovies(data));
         }
     )}
 
+//DISPLAYS TITLES AND RATINGS IN HTML FORMAT:
 function outputMovies(data) {
     html = "";
     for (var i = 0; i < data.length; i++) {
@@ -22,35 +24,34 @@ function outputMovies(data) {
     return html;
 }
 
+//FUNCTION CALLS:
 // outputMovies();
-getMovies();
+// getMovies();
 
 // The C in CRUD: Create with a POST request
 
-// const booksURL = "https://scientific-thoughtful-asparagus.glitch.me/books";
-//
-// const bookToPost = {
-//     title: "Eleanor of Aquitaine",
-//     author: {
-//         firstName: "Ralph",
-//         lastName: "Turner"
-//     }
-// }
-//
-// const postOptions = {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type' : 'application/json'
-//     },
-//     body: JSON.stringify(bookToPost)
-// };
-//
-// function getBooks(){
-//     fetch(booksURL).then(resp => resp.json()).then(data => console.log(data));
-// }
-// getBooks();
+//THIS WILL CREATE NEW MOVIE THAT WILL BE ADDED TO JSON DATA:
+const movieURL = "https://scientific-thoughtful-asparagus.glitch.me/movies";
 
-// fetch(booksURL, postOptions).then(getBooks);
+const movieToPost = {
+    title: "Pulp Fiction",
+    rating: 9
+}
+
+const postOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(movieToPost)
+};
+
+function getMovie(){
+    fetch(movieURL).then(resp => resp.json()).then(data => console.log(data));
+}
+getMovie();
+
+// fetch(movieURL, postOptions).then(getMovie);
 
 // The U in CRUD -- PUT and PATCH
 
