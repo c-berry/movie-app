@@ -26,7 +26,7 @@ function outputMovies(data) {
 
 // The C in CRUD: Create with a POST request
 
-//NEW MOVIE THAT WILL BE ADDED TO JSON DATA:
+//NEW MOVIE EXAMPLE THAT WILL BE ADDED TO JSON DATA:
 const movieToPost = {
     title: "Pulp Fiction",
     rating: 5
@@ -99,3 +99,4 @@ function getMovie(){
 // }
 // //
 // fetch(movieURL + "/5", deleteOptions).then(getMovie);
+
