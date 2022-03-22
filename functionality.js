@@ -19,6 +19,7 @@ function outputMovies(data) {
         html += "<div id='container' class='card-body'>"
             + "<div>Title: " + title + "</div>"
             + "<div>Rating: " + rating + "</div>"
+            + '<button type="button" id="delete-movie" onclick="">Delete</button>'
             + "</div>"
     }
     return html;
@@ -28,8 +29,8 @@ function outputMovies(data) {
 
 //NEW MOVIE EXAMPLE THAT WILL BE ADDED TO JSON DATA:
 const movieToPost = {
-    title: "Pulp Fiction",
-    rating: 5
+    title: "",
+    rating: ""
 }
 
 //FORMAT FOR ADDING OBJECT TO JSON:
