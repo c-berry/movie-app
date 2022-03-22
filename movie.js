@@ -6,7 +6,7 @@ const mapElementToDiv = (movie) => `<div>
                 <button type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
             </div>`;
 
-
+const moviesUrl = "https://scientific-thoughtful-asparagus.glitch.me/movies";
 function getMovies() {
     fetch(`https://scientific-thoughtful-asparagus.glitch.me/movies`).then(resp => resp.json()).then(function(data){
 
@@ -65,17 +65,30 @@ const bookToPost2 = {
     "title": "",
     "rating": ""
 }
+
+
+
+
 $('#edit-movie-btn').click(function (e){
     e.preventDefault();
-    bookToPost2.title = $('#edit-movie-title').val();
-    bookToPost2.rating = $('#edit-movie-rating').val();
-    console.log(bookToPost2)
-    const patchOptions = {
-        method: 'PATCH',
+    const movieToPost = {
+        title: $('#edit-movie-title').val(),
+        rating: $('#edit-movie-rating').val()
+    };
+    // bookToPost2.title = $('#edit-movie-title').val();
+    // bookToPost2.rating = $('#edit-movie-rating').val();
+    console.log(movieToPost);
+    const putOptions = {
+        method: 'PUT',
         headers: {
             'Content-Type' : 'application/json'
         },
-        body: JSON.stringify(bookToPost2)
+        body: JSON.stringify(movieToPost)
     };
-    fetch(`https://scientific-thoughtful-asparagus.glitch.me/movies`, patchOptions).then(getMovies);
+    fetch(moviesUrl +"/1",putOptions).then(consoleMovies);
 });
+
+function consoleMovies(){
+    fetch(moviesUrl).then(resp => resp.json()).then(movies =>console.log(movies));
+}
+consoleMovies();
