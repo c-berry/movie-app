@@ -1,6 +1,6 @@
 const mapElementToOption = (movie) => `<option value="${movie.id}">${movie.title}</option>`;
 
-const mapElementToDiv = (movie) => `<div id="movie-card">
+const mapElementToDiv = (movie) => `<div class="movie-card">
                 <div><img src="${movie.poster}"></div>
                 <div class="movie-content">${movie.title}</div>
                 <div class="movie-content">Rating: ${movie.rating}</div>
@@ -20,20 +20,14 @@ function getMovies() {
 
         const moviesOption = data.map(mapElementToOption)
         $('#movies-list').html(moviesOption)
+
+        $(".movie-card").click(function (e){
+            console.log(e);
+            $(".movie-content").toggleClass('movie-content')
+        });
     });
 }
 getMovies();
-
-//
-//
-// $('#movie-card').click(function (){
-//     alert("hello");
-//     // $(this).toggleClass('movie-content')
-// });
-
-
-
-
 
 $('#add-movie-btn').click(function (e){
     e.preventDefault();
@@ -52,7 +46,6 @@ $('#add-movie-btn').click(function (e){
     clearValue();
 });
 
-
 function deleteMovie(id) {
     const deleteOptions = {
         method: 'DELETE',
@@ -62,7 +55,6 @@ function deleteMovie(id) {
     };
     fetch(moviesUrl + '/' + id, deleteOptions).then(getMovies);
 }
-
 
 $('#movies-list').change(function (){
     const selectedMovie = $('#movies-list').val();
@@ -77,7 +69,6 @@ $('#movies-list').change(function (){
         });
     });
 });
-
 
 $('#edit-movie-btn').click(function (e){
     e.preventDefault();
@@ -100,7 +91,6 @@ function editMovie(id) {
     };
     fetch(moviesUrl + '/' + id, putOptions).then(getMovies);
 }
-
 
 function clearValue () {
         $('#movie-title').val("");
