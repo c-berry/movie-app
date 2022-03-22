@@ -1,10 +1,10 @@
 const mapElementToOption = (movie) => `<option value="${movie.id}">${movie.title}</option>`;
 
-const mapElementToDiv = (movie) => `<div id="movie-container">
+const mapElementToDiv = (movie) => `<div id="movie-card">
                 <div><img src="${movie.poster}"></div>
-                <div>${movie.title}</div>
-                <div>Rating: ${movie.rating}</div>
-                <div>Year: ${movie.year}</div>
+                <div class="movie-content">${movie.title}</div>
+                <div class="movie-content">Rating: ${movie.rating}</div>
+                <div class="movie-content">Year: ${movie.year}</div>
                 <div class="d-none">${movie.id}</div>
                 
                 <button type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
@@ -16,13 +16,24 @@ function getMovies() {
     fetch(moviesUrl).then(resp => resp.json()).then(function(data){
 
         const movies = data.map(mapElementToDiv)
-        $('#output').html(movies)
+        $('#output-container').html(movies)
 
         const moviesOption = data.map(mapElementToOption)
         $('#movies-list').html(moviesOption)
     });
 }
 getMovies();
+
+//
+//
+// $('#movie-card').click(function (){
+//     alert("hello");
+//     // $(this).toggleClass('movie-content')
+// });
+
+
+
+
 
 $('#add-movie-btn').click(function (e){
     e.preventDefault();
@@ -101,15 +112,15 @@ function clearValue2 () {
     $('#edit-movie-rating').val("");
 }
 
-//API:
-function getMoviePoster() {
-    $.get("http://omdbapi.com/?apikey=" + [MOVIE_API] + "&t=star+wars", {
-        // APPID: MOVIE_API,
-    }).done(function (data) {
-        console.log(data);
-        console.log(data.Poster)
-    });
-}
+// //API:
+// function getMoviePoster() {
+//     $.get("http://omdbapi.com/?apikey=" + [MOVIE_API] + "&t=star+wars", {
+//         // APPID: MOVIE_API,
+//     }).done(function (data) {
+//         console.log(data);
+//         console.log(data.Poster)
+//     });
+// }
 
 // Get the modal
 const modal = document.getElementById("myModal");

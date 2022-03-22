@@ -1,4 +1,19 @@
+#output-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
+}
+
+/*.movie-content {*/
+/*    display: none;*/
+/*}*/
+
+#movie-card {
+
+    width: 255px;
+    margin: 1em;
+}
 img {
     height: 350px;
     width: 250px;
