@@ -7,48 +7,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Films</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Add Movie</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Edit Movie</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
-<form>
 
-    <select name="edit-movie" id="movies-list"></select><br>
-    <label for="edit-movie-title">Edit Title</label>
-    <input type="text" id="edit-movie-title">
-    <br>
-    <label for="edit-movie-rating">Edit Rating</label>
-    <input type="text" id="edit-movie-rating">
-</form>
-<button type="submit" id="edit-movie-btn">Edit Movie</button>
+<!--EDIT MOVIE:-->
+<button id="myBtn2">Edit Movie</button>
+<div id="myModal2" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+        <form>
+            <select name="edit-movie" id="movies-list"></select><br>
+            <label for="edit-movie-title">Edit Title</label>
+            <input type="text" id="edit-movie-title">
+            <br>
+            <label for="edit-movie-rating">Edit Rating</label>
+            <input type="text" id="edit-movie-rating">
+        </form>
+        <button type="submit" id="edit-movie-btn">Edit Movie</button>
+    </div>
+</div>
 <br>
 <br>
-<form>
-    <label for="movie-title">Movie Title</label>
-    <input type="text" id="movie-title">
-    <br>
-    <label for="movie-rating">Movie Rating</label>
-    <input type="text" id="movie-rating">
-</form>
-<button type="submit" id="add-movie-btn">Add Movie</button>
+<!--ADD MOVIE:-->
+<button id="myBtn">Add Movie</button>
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+        <form>
+            <label for="movie-title">Movie Title</label>
+            <input type="text" id="movie-title">
+            <br>
+            <label for="movie-rating">Movie Rating</label>
+            <input type="text" id="movie-rating">
+        </form>
+        <button type="submit" id="add-movie-btn">Add Movie</button>
+    </div>
+</div>
 <br>
 <br>
 <div id="output"></div>
