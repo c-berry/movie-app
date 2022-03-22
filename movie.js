@@ -4,6 +4,7 @@ const mapElementToDiv = (movie) => `<div>
                 <div>${movie.title}</div>
                 <div>Rating: ${movie.rating}</div>
                 <div>${movie.id}</div>
+                
                 <button type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
             </div>`;
 
@@ -21,7 +22,6 @@ function getMovies() {
 }
 getMovies();
 
-
 $('#add-movie-btn').click(function (e){
     e.preventDefault();
     const movieToPost = {
@@ -36,6 +36,7 @@ $('#add-movie-btn').click(function (e){
         body: JSON.stringify(movieToPost)
     };
     fetch(moviesUrl, postOptions).then(getMovies);
+    clearValue();
 });
 
 
@@ -51,10 +52,12 @@ function deleteMovie(id) {
 
 
 $('#movies-list').change(function (){
-    const selectedMov = $('#movies-list').val();
+    const selectedMovie = $('#movies-list').val();
     fetch(moviesUrl).then(resp => resp.json()).then(function(data){
         data.forEach(function (movie){
-            if (movie.id == selectedMov) {
+            if (parseFloat(movie.id) === parseFloat(selectedMovie)) {
+                console.log(movie.id);
+                console.log(selectedMovie);
                 $('#edit-movie-title').val(movie.title)
                 $('#edit-movie-rating').val(movie.rating)
             }
@@ -65,10 +68,9 @@ $('#movies-list').change(function (){
 
 $('#edit-movie-btn').click(function (e){
     e.preventDefault();
-    const selectedMov = $('#movies-list').val();
-    editMovie(selectedMov)
-    clearValue()
-
+    const selectedMovie = $('#movies-list').val();
+    editMovie(selectedMovie);
+    clearValue2();
 });
 
 function editMovie(id) {
@@ -88,6 +90,21 @@ function editMovie(id) {
 
 
 function clearValue () {
-        $('#movie-title').html(""),
-        $('#movie-rating').html("")
+        $('#movie-title').val("");
+        $('#movie-rating').val("");
+}
+
+function clearValue2 () {
+    $('#edit-movie-title').val("");
+    $('#edit-movie-rating').val("");
+}
+
+//API:
+function getMoviePoster() {
+    $.get("http://omdbapi.com/?apikey=" + [MOVIE_API] + "&t=star+wars", {
+        // APPID: MOVIE_API,
+    }).done(function (data) {
+        console.log(data);
+        console.log(data.Poster)
+    });
 }
