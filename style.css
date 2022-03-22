@@ -5,12 +5,12 @@
 
 }
 
-/*.movie-content {*/
-/*    display: none;*/
-/*}*/
+.movie-content {
+    display: none;
+}
 
-#movie-card {
-
+.movie-card {
+    border: solid red;
     width: 255px;
     margin: 1em;
 }
