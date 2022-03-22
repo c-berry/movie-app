@@ -1,9 +1,11 @@
 const mapElementToOption = (movie) => `<option value="${movie.id}">${movie.title}</option>`;
 
-const mapElementToDiv = (movie) => `<div>
+const mapElementToDiv = (movie) => `<div id="movie-container">
+                <div><img src="${movie.poster}"></div>
                 <div>${movie.title}</div>
                 <div>Rating: ${movie.rating}</div>
-                <div>${movie.id}</div>
+                <div>Year: ${movie.year}</div>
+                <div class="d-none">${movie.id}</div>
                 
                 <button type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
             </div>`;
