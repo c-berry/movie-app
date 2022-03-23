@@ -19,7 +19,7 @@ const moviesUrl = "https://scientific-thoughtful-asparagus.glitch.me/movies";
 function getMovies() {
     fetch(moviesUrl).then(resp => resp.json()).then(function(data){
 
-        const movies = data.map(mapElementToDiv)
+        const movies = data.reverse().map(mapElementToDiv)
         $('#output-container').html(movies)
 
         const moviesOption = data.map(mapElementToOption)
@@ -112,6 +112,7 @@ function clearValue () {
     $('#movie-rating').val('');
     $('#edit-movie-title').val('');
     $('#edit-movie-rating').val('');
+    $('#api-input').val('')
 }
 
 
@@ -143,22 +144,10 @@ function clearValue () {
                 body: JSON.stringify(movieToPost)
             };
             fetch(moviesUrl, postOptions).then(getMovies);
+            clearValue()
 
          //SAVE SPOT>
         });
     });
-// }
 
-// getMoviePoster();
-//HOW TO INCORPORATE PLUS IF WHITESPACE IN BETWEEN
-// star+wars
 
-// //API BEFORE EDITS:
-// function getMoviePoster() {
-//     $.get("http://omdbapi.com/?apikey=" + [MOVIE_API] + "&t=star+wars", {
-//         // APPID: MOVIE_API,
-//     }).done(function (data) {
-//         console.log(data);
-//         console.log(data.Poster)
-//     });
-// }
