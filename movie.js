@@ -10,7 +10,7 @@ const mapElementToDiv = (movie) => `<div id="movies${movie.id}" class="movie-car
                 <div class="content hide">Genre: ${movie.Genre}</div>
                 <div class="content hide">Director: ${movie.Director}</div>
                 <div class="content hide">Plot: ${movie.Plot}</div>
-                <button class="content hide" type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
+                <button class="content hide btn-dark" type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
             </div>`;
 
 const moviesUrl = "https://scientific-thoughtful-asparagus.glitch.me/movies";
@@ -105,8 +105,6 @@ function editMovie(id) {
     fetch(moviesUrl + '/' + id, putOptions).then(getMovies);
 }
 
-
-
 function clearValue () {
     $('#movie-title').val('');
     $('#movie-rating').val('');
@@ -114,7 +112,6 @@ function clearValue () {
     $('#edit-movie-rating').val('');
     $('#api-input').val('')
 }
-
 
 // //API:
 // function getMoviePoster() {
@@ -145,9 +142,17 @@ function clearValue () {
             };
             fetch(moviesUrl, postOptions).then(getMovies);
             clearValue()
-
+            // $("#staticBackdrop").css({
+            //     "display": "none",
+            //     "z-index": "0"
+            // });
+            // $("#staticBackdrop2").css({
+            //     "display": "none",
+            //     "z-index": "0"
+            // });
          //SAVE SPOT>
         });
     });
+
 
 
