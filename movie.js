@@ -1,15 +1,15 @@
 
 
-const mapElementToOption = (movie) => `<option value="${movie.id}">${movie.title}</option>`;
+const mapElementToOption = (movie) => `<option value="${movie.id}">${movie.Title}</option>`;
 
 const mapElementToDiv = (movie) => `<div id="movies${movie.id}" class="movie-card">
-                <div><img src="${movie.poster}"></div>
-                <div class="content hide">${movie.title}</div>
-                <div class="content hide">Rating: ${movie.rating}</div>
-                <div class="content hide">Year: ${movie.year}</div>
-                <div class="content hide">Genre: ${movie.genre}</div>
-                <div class="content hide">Director: ${movie.director}</div>
-                <div class="content hide">Plot: ${movie.plot}</div>
+                <div><img src="${movie.Poster}"></div>
+                <div class="content hide">${movie.Title}</div>
+                <div class="content hide">Rating: ${movie.Rating}</div>
+                <div class="content hide">Year: ${movie.Year}</div>
+                <div class="content hide">Genre: ${movie.Genre}</div>
+                <div class="content hide">Director: ${movie.Director}</div>
+                <div class="content hide">Plot: ${movie.Plot}</div>
                 <button class="content hide" type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
             </div>`;
 
@@ -29,7 +29,7 @@ function getMovies() {
             $(`#movies${movie.id}`).click(function (){
                 $(this).children().toggleClass('hide')
                 // $(this).children('.content ').slideToggle(500)
-            })
+            });
         })
         // $(this).children('.content ').slideToggle(500)
         // $(".movie-card").click(function (e){
@@ -42,9 +42,10 @@ getMovies();
 
 $('#add-movie-btn').click(function (e){
     e.preventDefault();
+
     const movieToPost = {
-        title: $('#movie-title').val(),
-        rating: $('#movie-rating').val()
+        Title: $('#movie-title').val(),
+        Rating: $('#movie-rating').val()
     };
     const postOptions = {
         method: 'POST',
@@ -54,6 +55,7 @@ $('#add-movie-btn').click(function (e){
         body: JSON.stringify(movieToPost)
     };
     fetch(moviesUrl, postOptions).then(getMovies);
+
     clearValue();
 });
 
@@ -74,8 +76,8 @@ $('#movies-list').change(function (){
             if (parseFloat(movie.id) === parseFloat(selectedMovie)) {
                 console.log(movie.id);
                 console.log(selectedMovie);
-                $('#edit-movie-title').val(movie.title)
-                $('#edit-movie-rating').val(movie.rating)
+                $('#edit-movie-title').val(movie.Title)
+                $('#edit-movie-rating').val(movie.Rating)
             }
         });
     });
@@ -90,8 +92,8 @@ $('#edit-movie-btn').click(function (e){
 
 function editMovie(id) {
     const movieToPost = {
-        title: $('#edit-movie-title').val(),
-        rating: $('#edit-movie-rating').val()
+        Title: $('#edit-movie-title').val(),
+        Rating: $('#edit-movie-rating').val()
     };
     const putOptions = {
         method: 'PUT',
@@ -115,49 +117,48 @@ function clearValue () {
 
 // //API:
 // function getMoviePoster() {
+    $("#api-btn").click(function (e){
+        e.preventDefault();
+        let userInput = $("#api-input").val()
+        console.log(userInput);
+        $.get("http://omdbapi.com/?apikey=" + [MOVIE_API] + "&t=" + userInput, {
+        }).done(function (data) {
+            console.log(data);
+            console.log(data.Ratings[0].Value);
+            console.log(data.Plot);
+            const movieToPost = {
+                Title: data.Title,
+                Rating: data.Ratings[0].Value,
+                Poster: data.Poster,
+                Plot: data.Plot,
+                Year: data.Year,
+                Genre: data.Genre,
+                Director: data.Director,
+            };
+            const postOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(movieToPost)
+            };
+            fetch(moviesUrl, postOptions).then(getMovies);
+
+         //SAVE SPOT>
+        });
+    });
+// }
+
+// getMoviePoster();
+//HOW TO INCORPORATE PLUS IF WHITESPACE IN BETWEEN
+// star+wars
+
+// //API BEFORE EDITS:
+// function getMoviePoster() {
 //     $.get("http://omdbapi.com/?apikey=" + [MOVIE_API] + "&t=star+wars", {
 //         // APPID: MOVIE_API,
 //     }).done(function (data) {
 //         console.log(data);
 //         console.log(data.Poster)
 //     });
-// }
-
-// Get the modal
-// const modal = document.getElementById("modal-1");
-// const modal2 = document.getElementById("modal-2");
-//
-// // Get the button that opens the modal
-// const btn = document.getElementById("modal-btn-1");
-// const btn2 = document.getElementById("modal-btn-2");
-//
-// // Get the <span> element that closes the modal
-// const span = document.getElementsByClassName("close")[0];
-//
-// console.log(span)
-//
-// // When the user clicks on the button, open the modal
-// btn.onclick = function() {
-//     modal.style.display = "block";
-// }
-// btn2.onclick = function() {
-//     modal2.style.display = "block";
-// }
-//
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//     modal.style.display = "none";
-// }
-
-
-// When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-// window.onclick = function(event) {
-//     if (event.target == modal2) {
-//         modal2.style.display = "none";
-//     }
 // }
