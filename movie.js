@@ -1,16 +1,20 @@
+
+
 const mapElementToOption = (movie) => `<option value="${movie.id}">${movie.title}</option>`;
 
-const mapElementToDiv = (movie) => `<div class="movie-card">
+const mapElementToDiv = (movie) => `<div id="movies${movie.id}" class="movie-card">
                 <div><img src="${movie.poster}"></div>
-                <div class="movie-content">${movie.title}</div>
-                <div class="movie-content">Rating: ${movie.rating}</div>
-                <div class="movie-content">Year: ${movie.year}</div>
-                <div class="d-none">${movie.id}</div>
-                
-                <button type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
+                <div class="content hide">${movie.title}</div>
+                <div class="content hide">Rating: ${movie.rating}</div>
+                <div class="content hide">Year: ${movie.year}</div>
+                <div class="content hide">Genre: ${movie.genre}</div>
+                <div class="content hide">Director: ${movie.director}</div>
+                <div class="content hide">Plot: ${movie.plot}</div>
+                <button class="content hide" type="button" id="delete-movie" onclick="deleteMovie(${movie.id})">Delete Movie</button>
             </div>`;
 
 const moviesUrl = "https://scientific-thoughtful-asparagus.glitch.me/movies";
+// <div className="d-none">${movie.id}</div>
 
 function getMovies() {
     fetch(moviesUrl).then(resp => resp.json()).then(function(data){
@@ -21,10 +25,17 @@ function getMovies() {
         const moviesOption = data.map(mapElementToOption)
         $('#movies-list').html(moviesOption)
 
-        $(".movie-card").click(function (e){
-            console.log(e);
-            $(".movie-content").toggleClass('movie-content')
-        });
+        data.forEach(function (movie){
+            $(`#movies${movie.id}`).click(function (){
+                $(this).children().toggleClass('hide')
+                // $(this).children('.content ').slideToggle(500)
+            })
+        })
+        // $(this).children('.content ').slideToggle(500)
+        // $(".movie-card").click(function (e){
+        //     console.log(e);
+        //     $(".movie-content").toggleClass('movie-content')
+        // });
     });
 }
 getMovies();
@@ -74,7 +85,7 @@ $('#edit-movie-btn').click(function (e){
     e.preventDefault();
     const selectedMovie = $('#movies-list').val();
     editMovie(selectedMovie);
-    clearValue2();
+    clearValue();
 });
 
 function editMovie(id) {
@@ -92,15 +103,15 @@ function editMovie(id) {
     fetch(moviesUrl + '/' + id, putOptions).then(getMovies);
 }
 
+
+
 function clearValue () {
-        $('#movie-title').val("");
-        $('#movie-rating').val("");
+    $('#movie-title').val('');
+    $('#movie-rating').val('');
+    $('#edit-movie-title').val('');
+    $('#edit-movie-rating').val('');
 }
 
-function clearValue2 () {
-    $('#edit-movie-title').val("");
-    $('#edit-movie-rating').val("");
-}
 
 // //API:
 // function getMoviePoster() {
@@ -113,41 +124,40 @@ function clearValue2 () {
 // }
 
 // Get the modal
-const modal = document.getElementById("myModal");
-const modal2 = document.getElementById("myModal2");
-
-// Get the button that opens the modal
-const btn = document.getElementById("myBtn");
-const btn2 = document.getElementById("myBtn2");
-
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-btn2.onclick = function() {
-    modal2.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-span.onclick = function() {
-    modal2.style.display = "none";
-}
+// const modal = document.getElementById("modal-1");
+// const modal2 = document.getElementById("modal-2");
+//
+// // Get the button that opens the modal
+// const btn = document.getElementById("modal-btn-1");
+// const btn2 = document.getElementById("modal-btn-2");
+//
+// // Get the <span> element that closes the modal
+// const span = document.getElementsByClassName("close")[0];
+//
+// console.log(span)
+//
+// // When the user clicks on the button, open the modal
+// btn.onclick = function() {
+//     modal.style.display = "block";
+// }
+// btn2.onclick = function() {
+//     modal2.style.display = "block";
+// }
+//
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     modal.style.display = "none";
+// }
 
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-window.onclick = function(event) {
-    if (event.target == modal2) {
-        modal2.style.display = "none";
-    }
-}
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+// window.onclick = function(event) {
+//     if (event.target == modal2) {
+//         modal2.style.display = "none";
+//     }
+// }
