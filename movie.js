@@ -34,7 +34,12 @@ function getMovies() {
                 // $(this).children('.content ').slideToggle(500)
             });
         });
-    });
+    }).then(function (){
+        setTimeout(function (){
+            $('#loading').remove();
+            $('#loading-text').remove();
+        }, 1000)
+        });
 }
 getMovies();
 

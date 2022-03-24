@@ -105,3 +105,19 @@ img {
     }
 
 }
+
+#loading {
+    position: fixed;
+
+    width: 100%;
+    background: #3b195b;
+}
+#loading-text {
+    font-size: 100px;
+    color: white;
+    font-weight: lighter;
+    position: fixed;
+    bottom: .5em;
+    right: 1em;
+
+}
