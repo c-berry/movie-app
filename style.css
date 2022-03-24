@@ -76,7 +76,7 @@ img {
 }
 .custom  {
     display: flex;
-    width: 60%;
+    width: 50%;
 }
 .custom-2 {
     width: 15%;
@@ -108,7 +108,7 @@ img {
 
 #loading {
     position: fixed;
-
+    height: 100%;
     width: 100%;
     background: #3b195b;
 }
