@@ -201,6 +201,13 @@ $('#search-bar-btn').click(function (e) {
     getApiData(userInput);
     $("#search-bar").val('');
 });
+$(document).on('keypress',function(e) {
+    if(e.which === 13) {
+        const userInput = $('#search-bar').val();
+        getApiData(userInput);
+        $("#search-bar").val('');
+    }
+});
 
 
 $('#edit-movie-close').click(function (){
