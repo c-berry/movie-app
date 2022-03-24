@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Movies</title>
+
+    <title>Movies App</title>
+<!--    LINKS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/10e3a90a02.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<!--LOADING SCREEN-->
 <div id="loading">
     <div id="loading-text">Please Wait. . .</div>
 </div>
-<!-- Navbar -->
+
+<!-- NAVBAR -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark pb-1 pt-2">
     <div class="container">
         <a class="navbar-brand">Top 50 films & shows</a>
@@ -35,27 +38,8 @@
                     </ul>
                 </li>
             </ul>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                        Add/Edit Movies-->
-<!--                    </a>-->
 
-<!--                    <div class="dropdown-menu dark" aria-labelledby="navbarDropdown">-->
-<!--                        &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">-->
-<!--                            Edit Movie-->
-<!--                        </button>-->
-<!--                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">-->
-<!--                            Add Movie-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </li>-->
-
-<!--            // SEARCH MOVIES-->
-<!--            <form class="d-flex">-->
-<!--                <input id="api-input" class="form-control me-2" type="search" placeholder="Search Movies" aria-label="Search">-->
-<!--                <button id="api-btn" class="btn btn-outline-success" type="submit">Search</button>-->
-<!--            </form>-->
+<!--        // SEARCH MOVIES-->
             <div class="custom">
             <input id="search-bar" name="movie-search-bar" type="search" class="form-control rounded" placeholder="Search your favorite film or show!" aria-label="Search" aria-describedby="search-addon"/>
             <button class="input-group-text border-0" id="search-bar-btn">
@@ -67,8 +51,7 @@
     </div>
 </nav>
 
-
-<!-- Modal -->
+<!-- EDIT MOVIE MODAL -->
 <div class="modal fade" id="staticBackdrop1" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -77,14 +60,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
                         <form>
                             <select name="edit-movie" id="movies-list" class="form-select" aria-label="Default select example">
                             </select><br>
-<!--                            <label for="edit-movie-title">Edit Title</label>-->
-<!--                            <input type="text" id="edit-movie-title">-->
-<!--                            <br>-->
-<!--                            <label for="edit-movie-rating">Edit Rating</label>-->
-<!--                            <input type="text" id="edit-movie-rating">-->
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Edit Title</span>
@@ -118,8 +97,8 @@
                                 <span class="input-group-text">Edit Plot</span>
                                 <textarea class="form-control" aria-label="With textarea" id="edit-movie-plot"></textarea>
                             </div>
-
                         </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-movie-close">Close</button>
@@ -129,6 +108,7 @@
     </div>
 </div>
 
+<!--ADD MOVIE MODAL-->
 <div class="modal fade" id="staticBackdrop2"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -137,9 +117,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
                 <form class="d-flex">
                     <input id="api-input" class="form-control me-2" type="search" placeholder="Search Titles" aria-label="Search">
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -149,7 +131,7 @@
     </div>
 </div>
 
-
+<!--CUSTOM MOVIE MODAL-->
 <div class="modal fade" id="staticBackdrop3"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -158,22 +140,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
                 <form>
-<!--                    <label for="movie-title">Title</label>-->
-<!--                    <input type="text" id="movie-title">-->
-<!--                    <label for="movie-rating">Rating</label>-->
-<!--                    <input type="text" id="movie-rating">-->
-<!--                    <label for="movie-year">Year</label>-->
-<!--                    <input type="text" id="movie-year">-->
-<!--                    <label for="movie-genre">Genre</label>-->
-<!--                    <input type="text" id="movie-genre">-->
-<!--                    <label for="movie-director">Director</label>-->
-<!--                    <input type="text" id="movie-director">-->
-<!--                    <label for="movie-actors">Actors</label>-->
-<!--                    <input type="text" id="movie-actors">-->
-
-
-
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon8">Title</span>
                         <input id="movie-title" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
@@ -206,8 +174,8 @@
                         <span class="input-group-text">Plot</span>
                         <textarea class="form-control" aria-label="With textarea" id="movie-plot"></textarea>
                     </div>
-
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button id="add-movie-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -217,9 +185,10 @@
     </div>
 </div>
 
+<!--MOVIE OUTPUT CONTAINER-->
 <div id="output-container"></div>
 
-
+<!--SCRIPTS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="keys.js"></script>
 <script src="jquery-2.2.4.js"></script>

@@ -1,5 +1,5 @@
 
-
+//SETS EACH MOVIE TO DIVS WITH VALUES
 const mapElementToOption = (movie) => `<option value="${movie.id}">${movie.Title}</option>`;
 
 const mapElementToDiv = (movie) => `<div id="movies${movie.id}" class="movie-card">
@@ -18,6 +18,7 @@ const mapElementToDiv = (movie) => `<div id="movies${movie.id}" class="movie-car
 const moviesUrl = "https://scientific-thoughtful-asparagus.glitch.me/movies";
 // <div className="d-none">${movie.id}</div>
 
+//GET MOVIES FROM GLITCH SERVER
 function getMovies() {
     fetch(moviesUrl).then(resp => resp.json()).then(function(data){
 
@@ -35,14 +36,17 @@ function getMovies() {
             });
         });
     }).then(function (){
+
+        //LOADING SCREEN:
         setTimeout(function (){
             $('#loading').remove();
             $('#loading-text').remove();
-        }, 1000)
+        }, 1000);
         });
 }
 getMovies();
 
+//ADD MOVIE ON CLICK
 $('#add-movie-btn').click(function (e){
     e.preventDefault();
 
@@ -68,6 +72,7 @@ $('#add-movie-btn').click(function (e){
     clearValue();
 });
 
+//DELETE MOVIE FUNCTION
 function deleteMovie(id) {
     const deleteOptions = {
         method: 'DELETE',
@@ -78,6 +83,7 @@ function deleteMovie(id) {
     fetch(moviesUrl + '/' + id, deleteOptions).then(getMovies);
 }
 
+//DROPDOWN MENU ON EDIT
 $('#movies-list').change(function (){
     const selectedMovie = $('#movies-list').val();
     fetch(moviesUrl).then(resp => resp.json()).then(function(data){
@@ -98,6 +104,7 @@ $('#movies-list').change(function (){
     });
 });
 
+//CALLS EDIT MOVIE FUNCTION ON CLICK
 $('#edit-movie-btn').click(function (e){
     e.preventDefault();
     const selectedMovie = $('#movies-list').val();
@@ -105,6 +112,7 @@ $('#edit-movie-btn').click(function (e){
     clearValue();
 });
 
+//EDIT MOVIE FUNCTION
 function editMovie(id) {
     const movieToPost = {
         Title: $('#edit-movie-title').val(),
@@ -127,6 +135,7 @@ function editMovie(id) {
     fetch(moviesUrl + '/' + id, putOptions).then(getMovies);
 }
 
+//CLEARS VALUES IN TEXT INPUT(S)
 function clearValue () {
     $('#movie-title').val('');
     $('#movie-rating').val('');
@@ -147,17 +156,10 @@ function clearValue () {
     $('#api-input').val('')
 }
 
-// //API:
+// //API CALL:
 function getApiData(API) {
-//     $("#api-btn").click(function (e){
-//         e.preventDefault();
-//         let userInput = $("#api-input").val()
-//         console.log(userInput);
         $.get("http://omdbapi.com/?apikey=" + [MOVIE_API] + "&t=" + API, {
         }).done(function (data) {
-            console.log(data);
-            console.log(data.Ratings[0].Value);
-            console.log(data.Plot);
             const movieToPost = {
                 Title: data.Title,
                 Rating: data.Ratings[0].Value,
@@ -177,24 +179,18 @@ function getApiData(API) {
             };
             fetch(moviesUrl, postOptions).then(getMovies);
             clearValue();
-            // $("#staticBackdrop").css({
-            //     "display": "none",
-            //     "z-index": "0"
-            // });
-            // $("#staticBackdrop2").css({
-            //     "display": "none",
-            //     "z-index": "0"
-            // });
-         //SAVE SPOT>
+         //END>
     });
 }
 
+//CALL API FUNCTION ON ADD MOVIE
 $("#api-btn").click(function (e){
     e.preventDefault();
     const userInput = $("#api-input").val()
     getApiData(userInput);
 });
 
+//CALLS API FUNCTION ON SEARCH
 $('#search-bar-btn').click(function (e) {
     e.preventDefault();
     const userInput = $("#search-bar").val();
@@ -209,7 +205,7 @@ $(document).on('keypress',function(e) {
     }
 });
 
-
+//CLEAR TEXT INPUT(S) ON CLOSE
 $('#edit-movie-close').click(function (){
     clearValue();
 });
